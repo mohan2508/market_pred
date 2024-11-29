@@ -125,12 +125,12 @@ with fundamental:
     
     st.subheader(':green[Important Features]')
     col1,col2=st.columns(2)
-    #col1.write(f':red[Market Cap :] {df1['marketCap'][0]}')
-    col1.write(f':orange[Trailing PE :] {df1['trailingPE'][0]}')
-    col1.write(f':green[Total Revenue :] {df1['totalRevenue'][0]}')
-    col2.write(f':red[Total Debt :] {df1['totalDebt'][0]}')
-    col2.write(f':orange[Pay out Ratio:] {df1['payoutRatio'][0]}')
-    col2.write(f':green[Earning Growth :] {df1['earningsGrowth'][0]}')
+    col1.write(f":red[Market Cap :] {df1['marketCap'][0]}")
+    col1.write(f":orange[Trailing PE :] {df1['trailingPE'][0]}")
+    col1.write(f":green[Total Revenue :] {df1['totalRevenue'][0]}")
+    col2.write(f":red[Total Debt :] {df1['totalDebt'][0]}")
+    col2.write(f":orange[Pay out Ratio:] {df1['payoutRatio'][0]}")
+    col2.write(f":green[Earning Growth :] {df1['earningsGrowth'][0]}")
             
             
   
