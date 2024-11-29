@@ -131,6 +131,19 @@ with fundamental:
     col2.write(f":red[Total Debt :] {df1['totalDebt'][0]}")
     col2.write(f":orange[Pay out Ratio:] {df1['payoutRatio'][0]}")
     col2.write(f":green[Earning Growth :] {df1['earningsGrowth'][0]}")
+
+hide_streamlit_style = """
+<style>
+#MainMenu{visibility:hidden}
+footer{visibility:hidden}
+Manage app{visibility:hidden}
+deploy{visibility:hidden}
+Header{visibility:hidden}
+footer{visibility:hidden}
+
+</style>
+"""
+st.markdown(hide_streamlit_style, unsafe_allow_html=True) 
             
             
   
