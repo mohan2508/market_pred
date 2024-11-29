@@ -11,7 +11,7 @@ from statsmodels.tsa.arima.model import ARIMA
 from stocknews import StockNews 
 import requests 
 import json 
-
+@st.cache_data(ttl=TTL)
 st.markdown('## Stock :orange[Web] :red[App]')
 st.image("https://wallpaperaccess.com/full/2927403.jpg")
 st.markdown('## Stock :red[Future] :green[Prediction]')
@@ -32,6 +32,7 @@ data,prediction,chart,news,fundamental=st.tabs(['Data','Prediction','Chart','New
 with data:
     st.subheader(":orange[Raw] :green[Data]")
     st.write(hys_data.tail(10))
+@st.cache_data(ttl=TTL)    
 with chart:
     def plot_raw_data():
         fig=go.Figure()
@@ -59,6 +60,7 @@ with chart:
 
 hys_data['Date']=pd.to_datetime(hys_data['Date']).dt.date
 #Forcasting
+@st.cache_data(ttl=TTL)
 with prediction:
     high,low,close=st.tabs(['High','Low','Close'])
     with high:
@@ -85,6 +87,7 @@ with prediction:
         forecast_steps=30
         forecast_values=result.predict(start=len(data1),end=len(data1)+forecast_steps-1,dynamic=False)
         st.write(forecast_values.head(15))   
+   @st.cache_data(ttl=TTL)     
     with close:
         df_train=hys_data[['Date','Close']].rename(columns={'Date':'ds','Close':'y'})
         m=Prophet(daily_seasonality=True)
@@ -97,7 +100,8 @@ with prediction:
         forecast_steps=30
         forecast_values=result.predict(start=len(data1),end=len(data1)+forecast_steps-1,dynamic=False)
         st.write(forecast_values.head(15))  
-        
+@st.cache_data(ttl=TTL)  
+    
 with news:
     st.header(f'News of {stocks}')
     sn=StockNews(stocks,save_news=False)
@@ -111,6 +115,8 @@ with news:
         st.write(f'Title Sentiment {title_sentiment}')
         news_sentiment=df_news['sentiment_summary'][i]
         st.write(f'News Sentiment {news_sentiment}')
+@st.cache_data(ttl=TTL)  
+        
 
 with fundamental:
     ticker=yf.Ticker(stocks).info
