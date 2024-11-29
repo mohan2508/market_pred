@@ -31,8 +31,7 @@ st.divider()
 data,prediction,chart,news,fundamental=st.tabs(['Data','Prediction','Chart','News','Fundamental Analysis'])
 with data:
     st.subheader(":orange[Raw] :green[Data]")
-    st.write(hys_data.tail(10))
-@st.cache_data(ttl=TTL)    
+    st.write(hys_data.tail(10))   
 with chart:
     def plot_raw_data():
         fig=go.Figure()
@@ -60,7 +59,7 @@ with chart:
 
 hys_data['Date']=pd.to_datetime(hys_data['Date']).dt.date
 #Forcasting
-@st.cache_data(ttl=TTL)
+
 with prediction:
     high,low,close=st.tabs(['High','Low','Close'])
     with high:
@@ -87,7 +86,7 @@ with prediction:
         forecast_steps=30
         forecast_values=result.predict(start=len(data1),end=len(data1)+forecast_steps-1,dynamic=False)
         st.write(forecast_values.head(15))   
-   @st.cache_data(ttl=TTL)     
+       
     with close:
         df_train=hys_data[['Date','Close']].rename(columns={'Date':'ds','Close':'y'})
         m=Prophet(daily_seasonality=True)
@@ -99,8 +98,7 @@ with prediction:
         result=model.fit()
         forecast_steps=30
         forecast_values=result.predict(start=len(data1),end=len(data1)+forecast_steps-1,dynamic=False)
-        st.write(forecast_values.head(15))  
-@st.cache_data(ttl=TTL)  
+        st.write(forecast_values.head(15))    
     
 with news:
     st.header(f'News of {stocks}')
@@ -115,7 +113,7 @@ with news:
         st.write(f'Title Sentiment {title_sentiment}')
         news_sentiment=df_news['sentiment_summary'][i]
         st.write(f'News Sentiment {news_sentiment}')
-@st.cache_data(ttl=TTL)  
+
         
 
 with fundamental:
