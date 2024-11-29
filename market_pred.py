@@ -11,7 +11,7 @@ from statsmodels.tsa.arima.model import ARIMA
 from stocknews import StockNews 
 import requests 
 import json 
-@st.cache_data(ttl=TTL)
+
 st.markdown('## Stock :orange[Web] :red[App]')
 st.image("https://wallpaperaccess.com/full/2927403.jpg")
 st.markdown('## Stock :red[Future] :green[Prediction]')
