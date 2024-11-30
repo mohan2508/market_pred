@@ -28,7 +28,7 @@ col1,col2,col3,col4,col5=st.columns(5, gap="medium")
 st.divider()
 
 
-data,prediction,chart,news,fundamental=st.tabs(['Data','Prediction','Chart','News','Fundamental Analysis'])
+data,prediction,chart,news=st.tabs(['Data','Prediction','Chart','News'])
 with data:
     st.subheader(":orange[Raw] :green[Data]")
     st.write(hys_data.tail(10))   
@@ -116,25 +116,6 @@ with news:
 
         
 
-with fundamental:
-    ticker=yf.Ticker(stocks).info
-    df=pd.DataFrame(ticker)
-    st.header(f':orange[Fundamental Details of :] {stocks} ')
-    st.write(df.head(1))
-    
-    fundamentals=['marketCap','trailingPE','totalRevenue','totalDebt',
-                  'payoutRatio','earningsGrowth']
-    df1=df[df.columns[df.columns.isin(fundamentals)]]
-    st.divider()
-    
-    st.subheader(':green[Important Features]')
-    col1,col2=st.columns(2)
-    col1.write(f":red[Market Cap :] {df1['marketCap'][0]}")
-    col1.write(f":orange[Trailing PE :] {df1['trailingPE'][0]}")
-    col1.write(f":green[Total Revenue :] {df1['totalRevenue'][0]}")
-    col2.write(f":red[Total Debt :] {df1['totalDebt'][0]}")
-    col2.write(f":orange[Pay out Ratio:] {df1['payoutRatio'][0]}")
-    col2.write(f":green[Earning Growth :] {df1['earningsGrowth'][0]}")
 
 hide_streamlit_style = """
 <style>
